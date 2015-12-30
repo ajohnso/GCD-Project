@@ -16,9 +16,13 @@ library(dplyr, rapportools)
 
 # Merge training and test data sets
   bind_tt <- bind_rows(X_train, X_test)
-
+  
 # Add variable names from features dataset
   colnames(bind_tt) <- features$V2
+  
+#Add variable name to activity dataset
+  colnames(activity) <- c("activitynumber", "activityname")
+
 
 ## 2. Extracts only the measurements on the mean and standard deviation for each 
 ##    measurement. 
@@ -34,8 +38,8 @@ library(dplyr, rapportools)
 #give the numbers corresponding activity labels
   for (i in 1:nrow(activity)) {
     num <- as.numeric(activity[i, 1])
-    label <- as.character(activity[i, 2])
-    bind_names[bind_names$V1 == num, ] <- label
+    label <- as.factor(activity[i, 2])
+    bind_names[bind_names$activitynumber == num, ] <- label
   }
 
 #combine labels with mean_std data set
@@ -46,21 +50,36 @@ library(dplyr, rapportools)
 #Make names more descriptive
   VariableNames <- tocamel(names(labeled), delim = "\\.|\\_", upper = TRUE,
                            sep = "")
-  VariableNames1 <- gsub("Acc", "Acceleration", VariableNames)
-  VariableNames2 <- gsub("Mag", "Magnitude", VariableNames1)
-  VariableNames3 <- gsub("Gyro", "Gyroscope", VariableNames2)
-  VariableNames4 <- gsub("BodyBody", "Body", VariableNames3)
-  VariableNames5 <- gsub("Std", "StandardDeviation", VariableNames4)
-  VariableNames6 <- gsub("Freq", "Frequency", VariableNames5)
+  VariableNames1 <- gsub("Acc", "acceleration", VariableNames)
+  VariableNames2 <- gsub("Mag", "magnitude", VariableNames1)
+  VariableNames3 <- gsub("Gyro", "gyroscope", VariableNames2)
+  VariableNames4 <- gsub("BodyBody", "body", VariableNames3)
+  VariableNames5 <- gsub("Std", "standarddeviation", VariableNames4)
+  VariableNames6 <- gsub("Freq", "frequency", VariableNames5)
+  VariableNames7 <- gsub("V1", "activity", VariableNames6)
 
 #Apply names to data set
-  names(labeled) <- VariableNames6
+  names(labeled) <- VariableNames7
   
 ## 5. From the data set in step 4, creates a second, independent tidy data set
 ##    with the average of each variable for each activity and each subject
   
   bind_subj <- bind_rows(subj_train, subj_test)
-  subj_activity_avg <- aggregate(labeled, by = list(activity = labeled[,1], 
-                                     subject = bind_subj[,1]), mean)
   
-  write.csv(subj_activity_avg, file='GCDproject.txt', row.names=FALSE)
+#Give descriptive variable name to merged subject dataset
+  colnames(bind_subj) <- "subject"
+  
+# Merge subject dataset with labeled activty and measurements dataset
+  subj_activity_avg <- bind_cols(bind_subj, labeled)
+  
+#Create tidy data set with averaged for each variable for each activity and subject
+  tidy_data <- subj_activity_avg %>%
+    group_by(subject, activity) %>%
+    summarize_each(funs(mean))
+
+#Output tidy_data to an independent file
+  write.table(tidy_data, file='getdataproject_tidydata.txt', row.name=FALSE)
+  
+  
+  
+    write.table(file = "tidy_data.txt", row.name = FALSE)
