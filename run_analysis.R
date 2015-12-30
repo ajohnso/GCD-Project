@@ -1,8 +1,8 @@
 ## You should create one R script called run_analysis.R that does the following. 
 ## 1. Merges the training and the test sets to create one data set.
 
-#load necessary libraries
-library(dplyr, rapportools)
+#load dplyr library
+library(dplyr)
 
 # Read data sets into R
   features <- read.table("features.txt")
