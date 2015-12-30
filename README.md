@@ -1,6 +1,17 @@
 The purpose of this project is to demonstrate ability to collect, work with, and clean a data set. The goal is to prepare tidy data that can be used for later analysis.
 
-Submitted for this project: 1) a tidy data, 2) a link to a Github repository with script for performing the analysis, and 3) a code book that describes the variables, the data, and any transformations or work performed to clean up the data called CodeBook.md. a README.md in the repo with the scripts is also included. This repo explains how all of the scripts work and how they are connected.
+Submitted for this project: 1) a tidy dataset named "getdataproject_tidydata.txt", 2) a link to a Github repository with script for performing the analysis ("run_analysis.R", and 3) a code book that describes the variables, the data, and any transformations or work performed to clean up the data called "CodeBook.md" and a "README.md" in the repo with the scripts is also included. This repo explains how all of the scripts work and how they are connected.
+
+The code in "run_analysis.R" accomplishes the following steps:
+1. Download UCI HAR Data into working directory
+2. Read in datasets from UCI HAR Data folder
+3. Merge X_train and X_test
+4. Apply appropriate variable names to merged dataset from features.txt
+5. Extract only mean and std measurements
+6. Merge y_train and y_test to combine activity labels
+7. Apply names to the activity numbers from activity_labels.txt
+8. Create an independent tidy data set with the average of each variable for each activity and each subject
+
 
 ==================================================================
 Human Activity Recognition Using Smartphones Dataset
