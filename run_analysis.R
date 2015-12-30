@@ -48,18 +48,21 @@ library(dplyr, rapportools)
 ## 4. Appropriately labels the data set with descriptive variable names.
   
 #Make names more descriptive
-  VariableNames <- tocamel(names(labeled), delim = "\\.|\\_", upper = TRUE,
-                           sep = "")
-  VariableNames1 <- gsub("Acc", "acceleration", VariableNames)
-  VariableNames2 <- gsub("Mag", "magnitude", VariableNames1)
-  VariableNames3 <- gsub("Gyro", "gyroscope", VariableNames2)
-  VariableNames4 <- gsub("BodyBody", "body", VariableNames3)
-  VariableNames5 <- gsub("Std", "standarddeviation", VariableNames4)
-  VariableNames6 <- gsub("Freq", "frequency", VariableNames5)
-  VariableNames7 <- gsub("V1", "activity", VariableNames6)
+  
+  VariableNames <- tolower(names(labeled))
+  VariableNames1 <- gsub("^t", "time", VariableNames)
+  VariableNames2 <- gsub("^f", "frequency", VariableNames1)
+  VariableNames3 <- gsub("acc", "acceleration", VariableNames2)
+  VariableNames4 <- gsub("mag", "magnitude", VariableNames3)
+  VariableNames5 <- gsub("gyro", "gyroscope", VariableNames4)
+  VariableNames6 <- gsub("bodybody", "body", VariableNames5)
+  VariableNames7 <- gsub("std", "standarddeviation", VariableNames6)
+  VariableNames8 <- gsub("freq", "frequency", VariableNames7)
+  VariableNames9 <- gsub("v1", "activity", VariableNames8)
+  VariableNames10 <- gsub("-", "", VariableNames9)
 
 #Apply names to data set
-  names(labeled) <- VariableNames7
+  names(labeled) <- VariableNames10
   
 ## 5. From the data set in step 4, creates a second, independent tidy data set
 ##    with the average of each variable for each activity and each subject
@@ -80,6 +83,3 @@ library(dplyr, rapportools)
 #Output tidy_data to an independent file
   write.table(tidy_data, file='getdataproject_tidydata.txt', row.name=FALSE)
   
-  
-  
-    write.table(file = "tidy_data.txt", row.name = FALSE)
