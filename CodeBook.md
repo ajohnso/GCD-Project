@@ -60,6 +60,15 @@ tBodyGyroJerkMean
 
 The complete list of variables of each feature vector is available in 'features.txt'
 
+Variable names were updated to more descriptive terms as follows:
+Symbols were removed and variable descriptions were improved-see below:
+"Acc" changed to "Acceleration"
+"Mag" changed to "Magnitude"
+"Gyro" changed to "Gyroscope"
+"BodyBody" changed to "Body"
+"Std" changed to "StandardDeviation"
+"Freq" changed to "Frequency"
+
 Datasets created in this tidy data project include the following with descriptions:
 
   features : from features.txt in UCI HAR Dataset folder
