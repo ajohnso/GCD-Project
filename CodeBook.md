@@ -60,31 +60,52 @@ tBodyGyroJerkMean
 
 The complete list of variables of each feature vector is available in 'features.txt'
 
+
 Variable names were updated to more descriptive terms as follows:
+
 Symbols were removed and variable descriptions were improved-see below:
+
 "Acc" changed to "Acceleration"
+
 "Mag" changed to "Magnitude"
+
 "Gyro" changed to "Gyroscope"
+
 "BodyBody" changed to "Body"
+
 "Std" changed to "StandardDeviation"
+
 "Freq" changed to "Frequency"
+
 
 Datasets created in this tidy data project include the following with descriptions:
 
   features : from features.txt in UCI HAR Dataset folder
+  
   activity : from activity_labels.txt in UCI HAR Dataset folder
+  
   y_train : from y_train.txt from train folder
+  
   y_test : from y_test.txt from test folder
+  
   X_test : from X_test.txt from test folder
+  
   X_train : from X_train.txt from train folder
+  
   subj_test : from subject_test.txt from test folder
+  
   subj_train : from subject_train.txt from train folder
   
   bind_tt : Merge training and test data sets
+  
   mean_std : test and training data sets with only the measurements on the mean and standard deviation for each measurement extracted
+  
   bind_names : merged training and test label numbers from  y_train and y_test
+  
   labeled : dataset with mean and standard deviation measurements combined with activity labels
+  
   bind_subj : merged dataset with subject numbers and activity numbers
+  
   subj_activity_avg : dataset with the average of each variable for each activity and each subject
   
   
