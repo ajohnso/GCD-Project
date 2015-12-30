@@ -1,5 +1,24 @@
 This data project consists of data from wearable activity trackers.
 
+Code Procedures:
+===============
+
+1. Download UCI HAR Data into working directory
+
+2. Read in datasets from UCI HAR Data folder
+
+3. Merge X_train and X_test
+
+4. Apply appropriate variable names to merged dataset from features.txt
+
+4. Extract only mean and std measurements
+
+5. Merge y_train and y_test to combine activity labels
+
+6. Apply names to the activity numbers from activity_labels.txt
+
+7. Create an independent tidy data set with the average of each variable for each activity and each subject
+
 Feature Selection 
 =================
 
